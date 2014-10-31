@@ -1,0 +1,159 @@
+/* Pranav Nair
+   Class 12
+   Project
+                           HTML++ V 1.01
+   Program to create a html file using a c++ program. In this program , you can
+   create your own html file. You have 5 options to include in your html file :
+   A welcome message ,Headings,Paragraphs,Horizontal Lines,Links (to linked hmtl sites) , and even
+   a table with your own number of rows and columns!
+   It even offers a drop down menu that lets you choose your own background color!
+   After completing the project , please stay back to read the message displayed
+   at the end , and follow the instructions!
+   */
+# include <fstream.h>
+# include <conio.h>
+# include <stdio.h>
+
+ofstream fout;
+
+void headings(int &a)
+{
+cout << "Please enter what you would want to type as the heading : ";
+char hea[100];
+gets(hea);
+fout <<"\n<h align=\"CENTRE\"><b>"<<hea<<"</b></h><t>";
+a++;
+}
+void welcomemessage()
+{
+clrscr();
+char ch[100];
+cout << "Enter the message youd like to display : ";
+gets(ch);
+fout << "<head><script language=\"javascript\" type=\"text/javascript\">alert(\""<<ch<<"\")</script></head><font face=\"TimesNewRoman\"><span style=\"font-size:10pt;text-decoration:none\"></span></a></font>";
+getch();
+clrscr();
+}
+
+void paragraphs()
+{
+cout << "Please enter all the content of your paragraph , with word limit 1000 : ";
+char content[1000];
+gets(content);
+fout<<"\n<p>"<<content<<"</p><t>";
+}
+void links()
+{
+cout << "Please enter an existing link : ";
+char link[100];
+gets(link);
+cout << endl << "Now please enter the text you would like to display with it : ";
+char text[100];
+gets(text);
+fout << "<a href=\""<<link<<"\">"<<text<<"</a>";
+}
+void horizline()
+{
+fout<<"\n<hr>";
+}
+void tableadd()
+{
+cout << "Enter number of columns : ";
+int col;
+cin >> col;
+cout << endl << "Enter the number of rows : " ;
+int row;
+cin >> row;
+fout<<"\n<table border=\"1\" style=\"width:300px\">";
+for (int i=0 ; i<col ; i++)
+{
+fout<<"\n<tr>";
+cout << "Enter the "<<row<<" elements of row number "<<(i+1)<<" : ";
+cout << endl;
+char input[100];
+for (int j=0 ; j<row ; j++)
+{
+cout << "Member " << (j+1) << " : " ;
+gets(input);
+fout << "<td>"<<input<<"</td>\n";
+}
+}
+}
+
+void main()
+{
+cout << "Hello! This program will make your own html file! Please click enter to\ncontinue";
+getch();
+clrscr();
+cout << "Please enter the name of your html file : ";
+char name[80];
+gets(name);
+
+fout.open(name);
+
+clrscr();
+cout << "Great! Now click enter to go to the HTML creater , where you can make\n your own HTML file!";
+clrscr();
+fout<<"<html>\n<body>\n<form>Change the background color:<select name=\"backGround\" size=\"1\" onChange=(document.bgColor=backGround.options[backGround.selectedIndex].value)><option value=\"000000\">[Black]<option value=\"730200\">[Dark Red]<option value=\"231800\">[Brown]<option value=\"044302\">[Dark Green]<option value=\"0D09A3\">[Dark Blue]<option value=\"444444\">[Gray]<option value=\"FF0400\">[Red]<option value=\"EFE800\">[Yellow]<option value=\"05EF00\">[Green]<option value=\"0206FF\">[Blue]<option value=\"AE08EF\">[Violet]<option value=\"FF8C8A\">[Mauve]<option value=\"FFCCCC\">[Peach]<option value=\"FFCC99\">[Orange]<option value=\"D5CCBB\">[Tan]<option value=\"DDDDDD\">[Light Gray] <option value=\"FBFF73\">[Light Yellow]<option value=\"7CFF7D\">[Light Green]<option value=\"A6BEFF\">[Light Blue]<option value=\"FFFFFF\" selected>[White]\n</select></form>";
+getch();
+clrscr();
+start:
+cout << "Please select what you would like to add : "<<endl;
+cout << " 1) Welcome Message\n2) Heading\n3) Paragraph\n4) Links\n5) Horzontal line\n6) Table\n7) Exit";
+cout << " Please enter your choice : ";
+int a=1;
+int b;
+cin >> b;
+if (b==1)
+{
+welcomemessage();
+getch();
+clrscr();
+goto start;
+}
+if (b==2)
+{
+
+    headings(a);
+    getch();
+    clrscr();
+    goto start;
+}
+if (b==3)
+{
+paragraphs();
+getch();
+clrscr();
+goto start;
+}
+if (b==4)
+{
+links();
+ getch();
+clrscr();
+goto start;
+}
+if(b==5)
+{
+horizline();
+getch();
+clrscr();
+goto start;
+}
+if(b==6)
+{
+tableadd();
+getch();
+clrscr();
+goto start;
+}
+if(b==7)
+{
+fout<<"</body>\n</html>";
+fout.close();
+}
+clrscr();
+cout << "Now carefully follow the following steps : Find the file you have just\ncreated and rename it by adding a .html after the name.\nClick Enter and you're ready to go!\n\n\n(P.S : If that doesnt work , first rename the file by adding a .txt after it.\n .Then open the text file ,  and click on save as , and then :-\nIn 'File Name' , add a .html at the end of the file name \nand change the save type to 'All Files' , and hit ENTER!\nYOU ARE GOOD TO GO!)";
+
+getch();
+}
